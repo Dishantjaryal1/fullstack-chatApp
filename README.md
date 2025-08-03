@@ -18,7 +18,6 @@ Chatty is a full-stack real-time chat application built using the **MERN** stack
 - 🟢 Online/Offline user status indicator
 - 🧭 Persistent message history (MongoDB)
 - 💾 Profile picture upload
-- ⚡ Typing status indicator (optional)
 - 🪶 Responsive, minimal UI (Tailwind CSS + Lucide icons)
 
 ---
