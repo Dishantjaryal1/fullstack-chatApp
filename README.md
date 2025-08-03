@@ -91,3 +91,63 @@ npm run dev
 
 The frontend will run on http://localhost:5173 by default.
 Make sure the backend is running on http://localhost:5001.
+
+---
+
+## 🚀 CI/CD Workflow
+
+This project uses GitHub Actions for CI/CD automation and Render for deployment.
+
+  ### ✅ CI/CD Pipeline Includes:
+
+  - Automatic Testing before deploy (npm test)
+
+  - Linting for code quality (npm run lint)
+
+  - Deployment to Render only if all checks pass
+
+  - triggered on: every push to the main branch
+
+🛠️ GitHub Actions Workflow
+```
+      name: CI/CD Pipeline
+      
+      on:
+        push:
+          branches: [ main ]
+        workflow_dispatch:
+      
+      jobs:
+        build-and-test:
+          runs-on: ubuntu-latest
+          steps:
+            - name: 📦 Checkout Code
+              uses: actions/checkout@v3
+      
+            - name: 📥 Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                node-version: 18
+      
+            - name: 📦 Install Dependencies
+              run: npm install
+              working-directory: ./client
+      
+            - name: ✅ Run Tests
+              run: npm test
+              working-directory: ./client
+      
+            - name: 💅 Run Linter
+              run: npm run lint
+              working-directory: ./client
+      
+        deploy:
+          needs: build-and-test
+          runs-on: ubuntu-latest
+          if: success()
+          steps:
+            - name: 🚀 Trigger Render Deployment
+              run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
+```
+---
+ℹ️ Your Render deploy hook must be stored securely in GitHub secrets as RENDER_DEPLOY_HOOK.
