@@ -37,13 +37,13 @@ Chatty is a full-stack real-time chat application built using the **MERN** stack
 
 ```bash
 chatty/
-├── client/             # React frontend (Vite)
+├── frontend/             # React frontend (Vite)
 │   └── src/
 │       ├── components/
 │       ├── pages/
 │       ├── store/      # Zustand stores
 │       └── App.jsx
-├── server/             # Express backend
+├── backend/             # Express backend
 │   ├── controllers/
 │   ├── models/
 │   ├── routes/
@@ -65,7 +65,7 @@ chatty/
 ## 🔧 Backend Setup
 
 ```bash
-cd server
+cd backend
 npm install
 
 Create a .env file inside the server/ directory:
@@ -84,7 +84,7 @@ npm run dev
 
 ## 💻 Frontend Setup
 ```
-cd client
+cd frontend
 npm install
 npm run dev
 ```
